@@ -1,0 +1,22 @@
+DROP TABLE IF EXISTS usuario;
+DROP SEQUENCE IF EXISTS USUARIO_SEQ;
+DROP TABLE IF EXISTS phone;
+DROP SEQUENCE IF EXISTS PHONE_SEQ;
+
+CREATE SEQUENCE USUARIO_SEQ;
+ALTER SEQUENCE USUARIO_SEQ INCREMENT by 1;
+
+CREATE SEQUENCE PHONE_SEQ;
+ALTER SEQUENCE PHONE_SEQ INCREMENT by 1;
+
+CREATE TABLE usuario (id INTEGER AUTO_INCREMENT PRIMARY KEY ,
+                  name VARCHAR(10),
+                  email VARCHAR(10),
+                  password VARCHAR(20)
+                   );
+
+CREATE TABLE phone (id INTEGER AUTO_INCREMENT PRIMARY KEY ,
+                  number VARCHAR(15),
+                  citycode VARCHAR(10),
+                  countrycode VARCHAR(20)
+                   );
