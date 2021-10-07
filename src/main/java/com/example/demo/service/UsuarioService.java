@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.UpdateResponse;
 import com.example.demo.dto.Usuario;
 import com.example.demo.dto.UsuarioResponse;
+import com.example.demo.dto.UsuarioUpdateRequest;
 import com.example.demo.exception.UsuarioException;
 import com.example.demo.repository.entity.UsuarioEntity;
 import com.example.demo.service.interfaces.out.UsuarioRepository;
@@ -37,8 +39,15 @@ public class UsuarioService {
         return usuarioRepository.consultarUsuario(id);
     }
 
-    public String actualizarUsuario(Usuario usuario, String id) {
-        usuarioRepository.actualizarUsuario(usuario, id);
-        return "Se actualizo el usuario de manera correcta";
+    public UpdateResponse actualizarUsuario(UsuarioUpdateRequest usuario, String id) {
+        var update = usuarioRepository.actualizarUsuario(usuario, id);
+        if (update != 1) {
+            throw new UsuarioException("No se encontro usuario para actualizar");
+
+        } else {
+            return UpdateResponse.builder()
+                    .mensaje("Se actualizo el usuario de manera correcta")
+                    .build();
+        }
     }
 }

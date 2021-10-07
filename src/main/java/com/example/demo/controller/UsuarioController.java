@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.UpdateResponse;
 import com.example.demo.dto.Usuario;
 import com.example.demo.dto.UsuarioResponse;
+import com.example.demo.dto.UsuarioUpdateRequest;
 import com.example.demo.exception.UsuarioException;
 import com.example.demo.repository.entity.UsuarioEntity;
 import com.example.demo.service.UsuarioService;
@@ -31,8 +33,8 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public final String actualizarUsuario(@Valid @RequestBody Usuario usuario,
-                                          @PathVariable("id") String id) {
+    public final UpdateResponse actualizarUsuario(@Valid @RequestBody UsuarioUpdateRequest usuario,
+                                                  @PathVariable("id") String id) {
         return usuarioService.actualizarUsuario(usuario, id);
     }
 }

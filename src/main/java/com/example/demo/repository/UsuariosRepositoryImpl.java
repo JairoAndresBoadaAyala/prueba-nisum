@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.dto.Usuario;
+import com.example.demo.dto.UsuarioUpdateRequest;
 import com.example.demo.repository.entity.PhoneEntity;
 import com.example.demo.repository.entity.UsuarioEntity;
 import com.example.demo.service.interfaces.out.UsuarioRepository;
@@ -61,13 +62,12 @@ public class UsuariosRepositoryImpl implements UsuarioRepository {
 
     @Override
     @Transactional
-    public int actualizarUsuario(Usuario usuario, String id) {
-        return em.createNativeQuery("UPDATE usuario SET name = :vName , email = :vEmail , password = :vPassWord, modified= :vModified WHERE id = :vId")
-                .setParameter("vName", usuario.getName())
-                .setParameter("vEmail", usuario.getEmail())
+    public int actualizarUsuario(UsuarioUpdateRequest usuario, String id) {
+        return em.createNativeQuery("UPDATE usuario SET password = :vPassWord, modified= :vModified, isactive= :vIsactive WHERE id = :vId")
                 .setParameter("vPassWord", usuario.getPassword())
-                .setParameter("vId", id)
                 .setParameter("vModified", LocalDateTime.now())
+                .setParameter("vIsactive", usuario.getIsactive())
+                .setParameter("vId", id)
                 .executeUpdate();
     }
 

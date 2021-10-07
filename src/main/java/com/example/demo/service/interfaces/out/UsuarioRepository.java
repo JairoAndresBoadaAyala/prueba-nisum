@@ -1,6 +1,7 @@
 package com.example.demo.service.interfaces.out;
 
 import com.example.demo.dto.Usuario;
+import com.example.demo.dto.UsuarioUpdateRequest;
 import com.example.demo.repository.entity.UsuarioEntity;
 
 public interface UsuarioRepository {
@@ -11,5 +12,5 @@ public interface UsuarioRepository {
 
     String consultarPorCorreo(String email);
 
-    int actualizarUsuario(Usuario usuario, String id);
+    int actualizarUsuario(UsuarioUpdateRequest usuario, String id);
 }
