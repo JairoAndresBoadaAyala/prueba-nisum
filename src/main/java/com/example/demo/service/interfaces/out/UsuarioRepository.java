@@ -7,5 +7,9 @@ public interface UsuarioRepository {
 
     UsuarioEntity crearUsuario(Usuario usuario);
 
-    UsuarioEntity consultarUsuario(int id);
+    UsuarioEntity consultarUsuario(String id);
+
+    String consultarPorCorreo(String email);
+
+    int actualizarUsuario(Usuario usuario, String id);
 }

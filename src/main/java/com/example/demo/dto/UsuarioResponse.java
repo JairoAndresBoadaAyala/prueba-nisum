@@ -1,34 +1,24 @@
-package com.example.demo.repository.entity;
+package com.example.demo.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-@Entity(name = "usuario")
-public class UsuarioEntity {
+public class UsuarioResponse {
 
-    @Id
     String id;
-
-    String name;
-    String email;
-    String password;
     LocalDateTime created;
     LocalDateTime modified;
     LocalDateTime last_login;
     String token;
     Integer isactive;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    List<PhoneEntity> phones;
 
 }

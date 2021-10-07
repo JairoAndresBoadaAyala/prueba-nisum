@@ -1,14 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.Usuario;
+import com.example.demo.dto.UsuarioResponse;
+import com.example.demo.exception.UsuarioException;
 import com.example.demo.repository.entity.UsuarioEntity;
 import com.example.demo.service.UsuarioService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/usuario")
@@ -22,14 +21,19 @@ public class UsuarioController {
 
 
     @PostMapping()
-    public UsuarioEntity crearUsuario(@RequestBody Usuario usuario) {
+    public UsuarioResponse crearUsuario(@Valid @RequestBody Usuario usuario) {
         return usuarioService.crearUsuario(usuario);
     }
 
     @GetMapping("/{id}")
-    public final UsuarioEntity obtenerInformacionPrestamo(@PathVariable("id") int id) {
-        System.out.println("ingreso al get");
+    public final UsuarioEntity obtenerInformacionPrestamo(@PathVariable("id") String id) {
         return usuarioService.consultarUsuario(id);
+    }
+
+    @PutMapping("/{id}")
+    public final String actualizarUsuario(@Valid @RequestBody Usuario usuario,
+                                          @PathVariable("id") String id) {
+        return usuarioService.actualizarUsuario(usuario, id);
     }
 }
 
