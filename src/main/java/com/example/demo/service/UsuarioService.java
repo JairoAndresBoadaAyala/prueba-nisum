@@ -6,11 +6,12 @@ import com.example.demo.dto.UsuarioResponse;
 import com.example.demo.dto.UsuarioUpdateRequest;
 import com.example.demo.exception.UsuarioException;
 import com.example.demo.repository.entity.UsuarioEntity;
+import com.example.demo.service.interfaces.in.IUsuarioService;
 import com.example.demo.service.interfaces.out.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements IUsuarioService {
 
     private final UsuarioRepository usuarioRepository;
 
